@@ -1,0 +1,20 @@
+Instructions to run the app:
+
+1. Make sure Python 3.x is installed.
+
+2. Install Flask:
+   pip install -r requirements.txt
+
+3. Run the app:
+   python app.py
+
+4. Open your browser at:
+   http://127.0.0.1:5000/
+
+5. Register a new user or login with existing.
+
+6. On main page, click "Watch Ad" to earn 10 coins per click.
+
+7. Once you have 2000+ coins, go to Withdraw page to redeem.
+
+Enjoy!

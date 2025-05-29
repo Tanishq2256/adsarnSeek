@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Withdraw</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+        }
+
+        .header {
+            background-color: #87CEFA;
+            padding: 60px 20px;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #218838;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            color: #007bff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .messages {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">AdsarnSeek</div>
+    
+    <div class="container">
+        <h2>Withdraw Coins</h2>
+        <p>Your Coins: {{ coins }}</p>
+        
+        <form method="POST">
+          {% if coins >= 2000 %}
+            <label for="upi_id">Enter UPI ID:</label><br>
+            <input type="text" id="upi_id" name="upi_id" required placeholder="example@bank"><br><br>
+            <button class="button" type="submit">Submit Withdrawal</button>
+          {% else %}
+            <p style="color: red;">You need at least 2000 coins to withdraw.</p>
+          {% endif %}
+        </form>
+        
+        <a href="{{ url_for('main') }}">⬅ Back to Main</a>
+        
+        <div class="messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                <ul>
+                {% for category, message in messages %}
+                  <li style="color: {% if category == 'danger' %}red{% elif category == 'success' %}green{% else %}black{% endif %};">
+                    {{ message }}
+                  </li>
+                {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+</body>
+</html>
