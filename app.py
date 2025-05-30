@@ -113,7 +113,7 @@ def withdraw():
     coins = c.fetchone()[0]
 
     if request.method == 'POST':
-        if coins >= 2000:
+        if coins >= 100000:
             upi_id = request.form.get('upi_id')
             if not upi_id:
                 flash("Please enter a valid UPI ID.", "danger")
@@ -121,12 +121,12 @@ def withdraw():
                 return redirect(url_for('withdraw'))
 
             # Deduct coins
-            new_coins = coins - 2000
+            new_coins = coins - 100000
             c.execute("UPDATE users SET coins=? WHERE id=?", (new_coins, user_id))
             conn.commit()
-            flash(f"Withdrawal successful! 2000 coins deducted. Paid to UPI: {upi_id}", "success")
+            flash(f"Withdrawal successful! 100000 coins deducted. Paid to UPI: {upi_id}", "success")
         else:
-            flash("You need at least 2000 coins to withdraw.", "danger")
+            flash("You need at least 100000 coins to withdraw.", "danger")
         conn.close()
         return redirect(url_for('main'))
 
